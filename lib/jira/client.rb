@@ -113,6 +113,10 @@ module JIRA
       JIRA::Resource::UserFactory.new(self)
     end
 
+    def Group # :nodoc:
+      JIRA::Resource::GroupFactory.new(self)
+    end
+
     def Issuetype # :nodoc:
       JIRA::Resource::IssuetypeFactory.new(self)
     end
