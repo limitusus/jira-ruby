@@ -10,7 +10,9 @@ module JIRA
       # The class methods are never called directly, they are always
       # invoked from a BaseFactory subclass instance.
       def self.all(client, options = {})
-        response = client.get(collection_for_all_path(client))
+        max_results = 100_000
+        params = { maxResults: max_results }
+        response = client.get(collection_for_all_path(client) + '?' + hash_to_query_string(params))
         json = parse_json(response.body)
         if collection_attributes_are_nested
           json = json[endpoint_name.pluralize]
